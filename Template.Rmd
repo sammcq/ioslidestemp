@@ -1,7 +1,6 @@
 ---
 title: "Title Template"
-author: "Samuel D. McQuillin, Ph.D. University of South Carolina"
-twitter: "@samcq"
+author: "Samuel D. McQuillin, Ph.D., mcquills@mailbox.sc.edu"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: ioslides_presentation
 logo: logo.png

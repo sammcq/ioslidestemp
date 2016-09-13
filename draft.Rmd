@@ -1,0 +1,237 @@
+---
+title: "Title Template"
+author: "Samuel D. McQuillin, Ph.D., mcquills@mailbox.sc.edu"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: ioslides_presentation
+logo: logo.png
+css: temp.css
+widescreen: TRUE
+---
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('slide:not(.title-slide, .backdrop, .segue)').append('<footer></footer>');    
+    $('footer').attr('label', 'SD McQuillin, 2016');
+
+  })
+</script>
+
+<style>
+  footer:after {
+    font-size: 12pt;
+    content: attr(label);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align:center;
+    bottom: 20px;
+    line-height: 1.9;
+    display: block;
+  }
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE)
+```
+```{r, echo=FALSE}
+#Dr. McQuillins UH Office Source
+#setwd("C:/R/nmrcsurvey")
+#Dr. McQuillin's Home Computer
+setwd("C:/Users/mcquills/R/nmrcsurvey")
+source("mergeclean.R")
+statefun("Georgia")
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+stdfmcom<-stdfm[ which(stdfm$STAT=="Complete"),]
+library(ggplot2)
+stdfmcom$MODELp<-factor(stdfmcom$MODELp,
+                  levels=c(1,2,3,4,5,6,7),
+                  labels=c("1-to-1",
+                  "Group",
+                  "Blended",
+                  "Team","Electronic","X-age peer",
+                  "Other"))
+
+
+stdfmcom$FREQpQ4<-factor(stdfmcom$FREQpQ4,
+                  levels=c(1,2,3,4,5),
+                  labels=c("Less than 25%",
+                  "25-50%",
+                  "51-75%",
+                  "76-90%",
+                  "More than 90%"))
+
+stdfmcom$STAFFpQ6<-factor(stdfmcom$STAFFpQ6,
+                  levels=c(1,2,3),
+                  labels=c("Increase",
+                  "Stay the same",
+                  "Decrease"))
+
+stdfmcom$YOUTHINCpQ1<-factor(stdfmcom$YOUTHINCpQ1,
+                  levels=c(1,2,3),
+                  labels=c("Increase",
+                  "Stay the same",
+                  "Decrease"))
+
+
+stdfmcom$BUDGpQ2<-factor(stdfmcom$BUDGpQ2,
+                  levels=c(1,2,3,4),
+                  labels=c("Increased",
+                  "Stayed roughly the same",
+                  "Fluctuated",
+                  "Decreased"))
+
+stdfmcom$BUDGpQ4<-factor(stdfmcom$BUDGpQ4,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+
+stdfmcom$BUDGpQ5<-factor(stdfmcom$BUDGpQ5,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ6<-factor(stdfmcom$BUDGpQ6,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ7<-factor(stdfmcom$BUDGpQ7,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ8<-factor(stdfmcom$BUDGpQ8,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ9<-factor(stdfmcom$BUDGpQ9,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ10<-factor(stdfmcom$BUDGpQ10,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ11<-factor(stdfmcom$BUDGpQ11,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ12<-factor(stdfmcom$BUDGpQ12,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ13<-factor(stdfmcom$BUDGpQ13,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ14<-factor(stdfmcom$BUDGpQ14,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ15<-factor(stdfmcom$BUDGpQ15,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+stdfmcom$BUDGpQ16<-factor(stdfmcom$BUDGpQ16,
+                  levels=c(1,2,3,4,5,6),
+                  labels=c("Under 10%",
+                  "10-25%",
+                  "26-50%",
+                  "51-75%",
+                  "76-90%",
+                  "Over 90%"))
+
+
+```
+
+## Introduction to slides
+
+This is a side presentation compiled with R studio using the ioslides_presentation rmarkdown output. I am testing following:
+
+- Slides that include source data pull functions
+- Slides that include graphs
+- Slides that include tables
+- slides that show r code and output
+- Slides that include images not produced by R
+
+## Slide with Graphs
+Here is an example graph slide. Let's see if it works. 
+
+<div class="centered">
+```{r, echo=FALSE}
+bar <- ggplot(stdfmcom, aes(factor(MODELp)))
+bar+geom_bar()+labs(title="Type of Mentoring Program",x="Type",y="Number of Programs Reporting")
+```
+</div>
+## Slide table {.smaller}
+
+```{r, echo=FALSE}
+
+k<-as.data.frame(prop.table(table(stdfmcom$MODELp)))
+knitr::kable(k,col.names=c("Model","Proportion"),digits=2)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+## Go Cocks
+
+<div class="centered">
+![Go Cocks!](C:/Users/mcquills/Desktop/slides draft/image.png)
+</div>
