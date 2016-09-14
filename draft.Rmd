@@ -225,11 +225,11 @@ knitr::kable(k,col.names=c("Model","Proportion"),digits=2)
 ```
 
 ## Slide with Plot
-
+<div class="centered">
 ```{r pressure}
 plot(pressure)
 ```
-
+</div>
 ## Go Cocks
 
 <div class="centered">
